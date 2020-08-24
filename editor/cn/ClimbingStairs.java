@@ -33,7 +33,7 @@ public class ClimbingStairs{
         System.out.println(solution.climbStairs(4));
     }
     //leetcode submit region begin(Prohibit modification and deletion)
-private class Solution {
+ class Solution {
     private int climbStairs(int n) {
         if(n <= 2) return n;
         int a = 1, b = 2;
