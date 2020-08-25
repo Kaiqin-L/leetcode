@@ -33,7 +33,7 @@ public class MoveZeroes{
         for(int j = 0; j < nums.length; j++){
             if(nums[j] == 0){
                 i++;
-            }else{// 保持了元素相对顺序
+            }else{// 保持了元素相对顺序,且时间复杂度为O(n)
                 int tmp = nums[j-i];
                 nums[j-i] = nums[j];
                 nums[j] = tmp;
