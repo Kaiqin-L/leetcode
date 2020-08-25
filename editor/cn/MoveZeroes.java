@@ -33,9 +33,9 @@ public class MoveZeroes{
         for(int j = 0; j < nums.length; j++){
             if(nums[j] == 0){
                 i++;
-            }else{
-                int tmp = nums[j - i];
-                nums[j - i] = nums[j];
+            }else{// 保持了元素相对顺序
+                int tmp = nums[j-i];
+                nums[j-i] = nums[j];
                 nums[j] = tmp;
             }
         }
