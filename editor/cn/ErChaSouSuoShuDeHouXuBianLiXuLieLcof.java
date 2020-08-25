@@ -49,28 +49,24 @@ class Solution {
     }
 
         private boolean helper(int[] postorder, int start, int end) {
-        if(start >= end) return true;
+            if(start >= end) return true;
 
-        int root = postorder[end];
-        //找到左右子树的分界线，如果使用另一个变量bound来代表分界线的话，注意不要把左子树划分为右子树。也就是说要注意bound不往前走的情况
-        int i;
-        for(i = start; i < end; i++){
-            if(postorder[i] > root){
-                break;
+            int root = postorder[end];
+            int i;
+            for(i = 0; i < end; i++){
+                if(postorder[i] > root){
+                    break;
+                }
             }
-        }
 
-        //如果右子树中有值小于root，则为不合格
-        for(int j = i; j < end; j++){
-            if(postorder[j] < root){
-                return false;
+            for(int j = i; j < end; j++){
+                if(postorder[j] < root){
+                    return false;
+                }
             }
+            return helper(postorder, start, i - 1) && helper(postorder, i, end - 1);
         }
-
-        // 分解问题
-        return  helper(postorder, start, i - 1)&&helper(postorder, i, end - 1);
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
