@@ -34,6 +34,16 @@ private class Solution {
         if(nums.length <= 1) return null;
         int[] res = new int[2];
 
+        //O(n)时间 + O(n)空间(HashMap)
+        HashMap<Integer, Integer> mmp = new HashMap<>();
+        for(int i = 0; i < nums.length; i++){
+            if(!mmp.containsKey(target - nums[i])){
+                mmp.put(nums[i], i);
+            }else{
+                res[0] = mmp.get(target - nums[i]); res[1] = i; break;
+            }
+        }
+
         //暴力法 O(n^2)时间 + O(1)空间
 /*        for(int i = 0; i < nums.length; i++) {
             for (int j = i + 1; j < nums.length; j++) {
@@ -42,18 +52,6 @@ private class Solution {
                     res[1] = j;
                 }
             }*/
-
-        //O(n)时间 + O(n)空间(HashMap)
-        HashMap<Integer, Integer> map = new HashMap<>();
-        for(int i = 0; i < nums.length; i++){
-            if(!map.containsKey(target - nums[i])){
-                map.put(nums[i],i);
-            }else{
-                res[0] = i;
-                res[1] = map.get(target - nums[i]);
-                break;
-            }
-        }
         return res;
     }
 }
