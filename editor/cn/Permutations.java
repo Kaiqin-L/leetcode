@@ -24,7 +24,7 @@ import java.util.List;
 public class Permutations{
     public static void main(String[] args){
         Solution solution = new Permutations().new Solution();
-        int[] nums = {1,2,3,4};
+        int[] nums = {1,2,3};
         List<List<Integer>> res = solution.permute(nums);
         for (List<Integer> ans: res
         ) {
