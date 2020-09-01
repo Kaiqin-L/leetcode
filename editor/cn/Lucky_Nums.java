@@ -1,0 +1,43 @@
+package Main.leetcode.editor.cn;
+
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class Lucky_Nums {
+	static String is_lucky(int[] nums, int n){
+		if(n == 1) return "lucky";
+		boolean flag = true;
+		HashMap<Integer, Integer> map = new HashMap<>();
+		for(int i = 0; i < n - 1; i++){
+			int cur = nums[i + 1] - nums[i] > 0 ? nums[i + 1] - nums[i] : nums[i] - nums[i + 1];
+			map.put(cur, i);
+		}
+		for(int j = 1; j <= n - 1; j++){
+			if(!map.containsKey(j)){
+				flag = false;
+				break;
+			}
+		}
+		return flag ? "lucky" : "not lucky";
+	}
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		while (sc.hasNextLine()) {
+			//int n = Integer.parseInt(sc.nextLine());
+			String s = sc.nextLine();
+			String[] str = s.split(" ");
+			int[] nums = new int[str.length];
+
+			int[] input = new int[str.length - 1];
+			for (int i = 0; i < str.length; i++) {
+				nums[i] = Integer.parseInt(str[i]);
+			}
+			int n = nums[0];
+			for (int j = 1; j < nums.length; j++) {
+				input[j - 1] = nums[j];
+			}
+			System.out.println(Lucky_Nums.is_lucky(input, n));
+		}
+	}
+}
