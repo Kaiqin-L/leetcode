@@ -6,19 +6,20 @@ import java.util.Scanner;
 public class Lucky_Nums {
 	static String is_lucky(int[] nums, int n){
 		if(n == 1) return "lucky";
-		boolean flag = true;
-		HashMap<Integer, Integer> map = new HashMap<>();
+		boolean[] check = new boolean[n - 1];
 		for(int i = 0; i < n - 1; i++){
 			int cur = nums[i + 1] - nums[i] > 0 ? nums[i + 1] - nums[i] : nums[i] - nums[i + 1];
-			map.put(cur, i);
-		}
-		for(int j = 1; j <= n - 1; j++){
-			if(!map.containsKey(j)){
-				flag = false;
-				break;
+			if(cur != 0 && cur <= n - 1){
+				if(check[cur - 1]){
+					return "not lucky";
+				}else{
+					check[cur - 1] = true;
+				}
+			}else{
+				return "not lucky";
 			}
 		}
-		return flag ? "lucky" : "not lucky";
+		return "lucky";
 	}
 
 	public static void main(String[] args) {
